@@ -1,13 +1,22 @@
 
-import './App.css';
-import PermissionWrapper from './Components/PermissionWrapper';
+
+import React from 'react';
+import Footer from './Components/Footer';
+import Header from './Components/Header';
 
 function App() {
 
   return (
-    <PermissionWrapper>
-      <h1>hello</h1>
-    </PermissionWrapper>
+    <>
+    <Header />
+    <main className="App">
+        <div className="controls">
+          <button>Get microphone input</button>
+        </div>
+      </main>
+
+      <Footer />
+      </>
   );
 }
 
