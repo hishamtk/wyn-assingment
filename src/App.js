@@ -1,6 +1,6 @@
 
 
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 
 import AudioAnalyser from './Components/AudioAnalyser';
 import Footer from './Components/Footer';
@@ -13,7 +13,28 @@ import songFile from "./static/a.mp3"
 function App() {
 
   const [audio ,setAudio] = useState(null)
+  const [havePermission,setPermission] = useState(false)
   const [song,setSong] = useState({data : new Audio(songFile),isPlaying:false})
+
+  useEffect(() => {
+    checkPermission()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+
+
+  const checkPermission = () =>{
+    if(!havePermission){
+    const permission = navigator.mediaDevices.getUserMedia({audio:true,video:false})
+
+    permission.then((stream)=>{
+      setPermission(true)
+    }).catch((err)=>{
+      setPermission(false)
+      console.log(`${err.name} : ${err.message}`)
+    })
+  }
+  }
 
   const  getMicrophone =async () =>{
     const audio  = await navigator.mediaDevices.getUserMedia({
