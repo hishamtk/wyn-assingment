@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ReactMic } from "react-mic";
+
 
 export default class AudioVisualiser extends Component {
   constructor(props) {
